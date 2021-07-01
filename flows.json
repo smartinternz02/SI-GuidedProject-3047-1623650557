@@ -1,0 +1,578 @@
+[
+    {
+        "id": "aaaeb6d0.ee0b18",
+        "type": "tab",
+        "label": "Flow 5",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "50aba10e.370ec",
+        "type": "ibmiot in",
+        "z": "aaaeb6d0.ee0b18",
+        "authentication": "apiKey",
+        "apiKey": "14beb9ac.2121e6",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "1001",
+        "applicationId": "",
+        "deviceType": "iotdevice",
+        "eventType": "event_1",
+        "commandType": "",
+        "format": "json",
+        "name": "IBM IoT",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": false,
+        "allLogicalInterfaces": "",
+        "allEvents": false,
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 110,
+        "y": 180,
+        "wires": [
+            [
+                "81aba6e.637c558",
+                "61aa82a1.b541ac",
+                "ecd725d4.9a2708",
+                "561f370d.d734b8",
+                "dc008a3c.9bd9a8"
+            ]
+        ]
+    },
+    {
+        "id": "dc008a3c.9bd9a8",
+        "type": "cloudant out",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "sensordata",
+        "cloudant": "cd9154ac.4827b8",
+        "database": "iotdevice",
+        "service": "node-red-umwwd-2021--cloudant-1620812491922-60228",
+        "payonly": true,
+        "operation": "insert",
+        "x": 450,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "561f370d.d734b8",
+        "type": "function",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "Soilmoisture",
+        "func": "global.set('Soilmoisture',msg.payload.Soilmoisture)\nmsg.payload=msg.payload.Soilmoisture\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 100,
+        "wires": [
+            [
+                "9eac324.a559cd",
+                "81aba6e.637c558"
+            ]
+        ]
+    },
+    {
+        "id": "61aa82a1.b541ac",
+        "type": "function",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "temperature",
+        "func": "global.set('temperature',msg.payload.temperature)\nmsg.payload=msg.payload.temperature\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 140,
+        "wires": [
+            [
+                "721ee2b1.60cc7c",
+                "81aba6e.637c558"
+            ]
+        ]
+    },
+    {
+        "id": "ecd725d4.9a2708",
+        "type": "function",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "humidity",
+        "func": "global.set('humidity',msg.payload.humidity)\nmsg.payload=msg.payload.humidity\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 200,
+        "wires": [
+            [
+                "20eb3b0.defcfc6",
+                "81aba6e.637c558"
+            ]
+        ]
+    },
+    {
+        "id": "81aba6e.637c558",
+        "type": "debug",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "721ee2b1.60cc7c",
+        "type": "ui_gauge",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "Temperature",
+        "group": "e10be5b5.270928",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "temperature",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "60",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 670,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "9eac324.a559cd",
+        "type": "ui_gauge",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "Soilmoisture",
+        "group": "164077e0.6e3bb8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Soilmoisture",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 650,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "20eb3b0.defcfc6",
+        "type": "ui_gauge",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "humidity",
+        "group": "591867d6.3f8788",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "humidity",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 660,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "69d9c3b4.c585ec",
+        "type": "http in",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "",
+        "url": "iotdevice",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 260,
+        "wires": [
+            [
+                "5114799a.2b27d8"
+            ]
+        ]
+    },
+    {
+        "id": "70487ced.7fd434",
+        "type": "http response",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 550,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "b7768fdd.f6547",
+        "type": "ui_button",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "SprinklerOn",
+        "group": "591867d6.3f8788",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "SprinklerON",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"command\":\"sprinkleron\"}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 320,
+        "wires": [
+            [
+                "9082a1b9.8a456",
+                "2c32d5c9.13259a"
+            ]
+        ]
+    },
+    {
+        "id": "fb796c5c.d08ac",
+        "type": "ui_button",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "SprinklerOff",
+        "group": "591867d6.3f8788",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "SprinklerOff",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"command\":\"srinkleroff\"}",
+        "payloadType": "json",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 90,
+        "y": 360,
+        "wires": [
+            [
+                "9082a1b9.8a456",
+                "2c32d5c9.13259a"
+            ]
+        ]
+    },
+    {
+        "id": "9082a1b9.8a456",
+        "type": "ibmiot out",
+        "z": "aaaeb6d0.ee0b18",
+        "authentication": "apiKey",
+        "apiKey": "14beb9ac.2121e6",
+        "outputType": "cmd",
+        "deviceId": "1001",
+        "deviceType": "iotdevice",
+        "eventCommandType": "home",
+        "format": "json",
+        "data": "data",
+        "qos": 0,
+        "name": "IBM IoT",
+        "service": "registered",
+        "x": 440,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "5114799a.2b27d8",
+        "type": "function",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "webpage",
+        "func": "msg.payload={'Soilmoisture':global.get('Soilmoisture'),'temperature':global.get('temperature'),'humidity':global.get('humidity'),'tempp':global.get('tempp'),'humid':global.get('humid'),'speed':global.get('speed')}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 260,
+        "wires": [
+            [
+                "70487ced.7fd434"
+            ]
+        ]
+    },
+    {
+        "id": "2c32d5c9.13259a",
+        "type": "debug",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "14ac1510.de9bdb",
+        "type": "http in",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "",
+        "url": "command",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 80,
+        "y": 420,
+        "wires": [
+            [
+                "fe349325.3802e"
+            ]
+        ]
+    },
+    {
+        "id": "4266bbed.029e94",
+        "type": "http response",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 450,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "fe349325.3802e",
+        "type": "function",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "command",
+        "func": "msg.payload=msg.payload.command\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 400,
+        "wires": [
+            [
+                "4266bbed.029e94",
+                "2c32d5c9.13259a",
+                "9082a1b9.8a456"
+            ]
+        ]
+    },
+    {
+        "id": "ac2a24f7.77f7c8",
+        "type": "inject",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 540,
+        "wires": [
+            [
+                "930d5618.c40b28"
+            ]
+        ]
+    },
+    {
+        "id": "930d5618.c40b28",
+        "type": "http request",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://api.openweathermap.org/data/2.5/weather?q=Hyderabad,%20IN&appid=b1319a34f0c89e126ebb8674d911fa8c",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 270,
+        "y": 520,
+        "wires": [
+            [
+                "e16cb9fb.14c5e8",
+                "e15c32a7.aa9c5",
+                "21b96526.fe87ea",
+                "70f77960.b3a5b8"
+            ]
+        ]
+    },
+    {
+        "id": "e16cb9fb.14c5e8",
+        "type": "debug",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "e15c32a7.aa9c5",
+        "type": "function",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "Temp max",
+        "func": "global.set(\"tempp\",msg.payload.main.temp_max)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "21b96526.fe87ea",
+        "type": "function",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "Humidity",
+        "func": "global.set(\"humid\",msg.payload.main.humidity)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "70f77960.b3a5b8",
+        "type": "function",
+        "z": "aaaeb6d0.ee0b18",
+        "name": "Wind Speed",
+        "func": "global.set(\"speed\",msg.payload.wind.speed)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "14beb9ac.2121e6",
+        "type": "ibmiot",
+        "name": "iotdata",
+        "keepalive": "60",
+        "serverName": "x8sfnd.messaging.internetofthings.ibmcloud.com",
+        "cleansession": true,
+        "appId": "",
+        "shared": false
+    },
+    {
+        "id": "cd9154ac.4827b8",
+        "type": "cloudant",
+        "host": "",
+        "name": ""
+    },
+    {
+        "id": "e10be5b5.270928",
+        "type": "ui_group",
+        "name": "temperature",
+        "tab": "8ba4cb95.937668",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "164077e0.6e3bb8",
+        "type": "ui_group",
+        "name": "soilmoisture",
+        "tab": "8ba4cb95.937668",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "591867d6.3f8788",
+        "type": "ui_group",
+        "name": "",
+        "tab": "8ba4cb95.937668",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "8ba4cb95.937668",
+        "type": "ui_tab",
+        "name": "Sprinklersystem",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
